@@ -1,35 +1,66 @@
 <template>
   <div id="app">
-    <app-list :node="node"></app-list>
-    <app-tree></app-tree>
+    <h1>Tree</h1>
+    <tree :tree-data="tree"></tree>
+    <hr>
+    <h1>List</h1>
+    <list :tree-data="tree"></list>
   </div>
 </template>
 
 <script>
+import Tree from "./Tree"
+import List from "./List"
+
 export default {
   name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-      node: {  
-        name: 'root',
-        selected: true,
-        childred: [
-          {
-          name: 'item1',
-          selected: true,
-          children: [
-          ]
-        },
+  data: () => ({
+    tree: {  
+      label: 'root',
+      selected: true,
+      children: [
         {
-          name: 'item2',
-          selected: false,
-          children: [
-          ]
-        },
+        label: 'item1',
+        selected: true,
+        children: [
+          {
+            label: 'item1-1',
+            selected: true,
+            children: [
+            ],
+          },
+          {
+            label: 'item1-2',
+            selected: true,
+            children: [
+            ],
+          }
         ]
-      }
-    }
+      },
+      {
+        label: 'item2',
+        selected: false,
+        children: [
+        ],
+      },
+      {
+        label: 'item3',
+        selected: true,
+        children: [
+          {
+            label: 'item3-1',
+            selected: true,
+            children: [
+            ],
+          }
+        ],
+      },
+      ]
+    },
+  }),
+  components: {
+    Tree,
+    List
   }
 }
 </script>

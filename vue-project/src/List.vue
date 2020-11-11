@@ -1,19 +1,19 @@
 <template>
-  <div>
-      <ul>
-          <li v-if="item in node"></li>
-      </ul>
+  <div class="list">
+    <node-list :node="treeData"></node-list>
   </div>
 </template>
 
 <script>
+import NodeList from "./NodeList"
+
 export default {
-    data() {
-        return {
-            title: 'I am list',
-        }
+    props: {
+        treeData: Object,
     },
-    props: ['node'],
+    components: {
+        NodeList
+    }
 }
 </script>
 
