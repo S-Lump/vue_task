@@ -4,12 +4,11 @@
     {{ node.label }}
     <button @click="deleteNode(node)">X</button>
     </label>
+
     <span v-if="node.children && node.children.length">
-      <node 
-        v-for="child in node.children"
-        :node="child" 
-        v-if="child.selected"
-      ></node>
+      <div v-for="child in node.children">
+        <node v-if="child.selected" :node="child"></node>
+      </div>
     </span>
   </p>
 </template>
@@ -19,7 +18,7 @@ export default {
     name: "node",
     data() {
         return {
-            isChecked: false,
+            
         }
     },
     props: {
@@ -27,8 +26,16 @@ export default {
     },
     methods: {
         deleteNode: function(vert) {
+            console.log(vert)
             vert.selected = false
-        }
+
+            if (vert.children && vert.children.length) {
+                for (let child in vert.children) {
+                    vert.children[child].selected = false
+                    this.deleteNode(vert.children[child])
+                }
+            }
+        },
     }
 }
 </script>
