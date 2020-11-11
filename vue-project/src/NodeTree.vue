@@ -5,7 +5,7 @@
       </label>
 
       <ul v-if="node.children && node.children.length">
-          <node v-for="child in node.children" :node="child"></node>
+        <node v-for="child in node.children" :node="child"></node>
       </ul>
   </li>
 </template>
@@ -17,14 +17,13 @@ export default {
         node: Object
     },
     methods: {
-        uncheckedChildren: function(vert) {
-            console.log(vert)
-            vert.selected = false
+        uncheckedChildren: function(node) {
+            node.selected = false
 
-            if (vert.children && vert.children.length) {
-                for (let child in vert.children) {
-                    vert.children[child].selected = false
-                    this.uncheckedChildren(vert.children[child])
+            if (node.children && node.children.length) {
+                for (let child in node.children) {
+                    node.children[child].selected = false
+                    this.uncheckedChildren(node.children[child])
                 }
             }
         },

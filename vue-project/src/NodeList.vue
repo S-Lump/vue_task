@@ -1,7 +1,7 @@
 <template>
   <p>
-    <label class="label">
-    {{ node.label }}
+    <label class="label" v-if="node.selected">
+    <span>{{ node.label }}</span>
     <button @click="deleteNode(node)">X</button>
     </label>
 
@@ -25,14 +25,13 @@ export default {
         node: Object
     },
     methods: {
-        deleteNode: function(vert) {
-            console.log(vert)
-            vert.selected = false
+        deleteNode: function(node) {
+            node.selected = false
 
-            if (vert.children && vert.children.length) {
-                for (let child in vert.children) {
-                    vert.children[child].selected = false
-                    this.deleteNode(vert.children[child])
+            if (node.children && node.children.length) {
+                for (let child in node.children) {
+                    node.children[child].selected = false
+                    this.deleteNode(node.children[child])
                 }
             }
         },
