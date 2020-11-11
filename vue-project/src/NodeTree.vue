@@ -6,7 +6,7 @@
         
       <!-- Рекурсивно передаем ноду, если имеет дочерние элементы -->
       <ul v-if="node.children && node.children.length">
-        <node v-for="child in node.children" :node="child"></node>
+        <node :key="child" v-for="child in node.children" :node="child"></node>
       </ul>
   </li>
 </template>

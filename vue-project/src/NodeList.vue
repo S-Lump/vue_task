@@ -8,7 +8,7 @@
 
     <!-- Рекурсивно передаем ноду, если имеет дочерние элементы -->
     <span v-if="node.children && node.children.length">
-      <div v-for="child in node.children">
+      <div :key="child" v-for="child in node.children">
         <node v-if="child.selected" :node="child"></node>
       </div>
     </span>
