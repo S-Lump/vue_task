@@ -1,9 +1,10 @@
 <template>
   <li class="node-tree">
       <label class="label">
-        {{ node.label }}<input type="checkbox" v-model="node.selected" @click="uncheckedChildren(node)">
+        {{ node.label }}<input type="checkbox" v-model="node.selected" @click="uncheckChildren(node)">
       </label>
-
+        
+      <!-- Рекурсивно передаем ноду, если имеет дочерние элементы -->
       <ul v-if="node.children && node.children.length">
         <node v-for="child in node.children" :node="child"></node>
       </ul>
@@ -17,13 +18,15 @@ export default {
         node: Object
     },
     methods: {
-        uncheckedChildren: function(node) {
+        // Рекурсивно производим unchecked всех элементов
+        // при unchecked родителя
+        uncheckChildren: function(node) {
             node.selected = false
 
             if (node.children && node.children.length) {
                 for (let child in node.children) {
                     node.children[child].selected = false
-                    this.uncheckedChildren(node.children[child])
+                    this.uncheckChildren(node.children[child])
                 }
             }
         },

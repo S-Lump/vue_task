@@ -1,10 +1,12 @@
 <template>
   <p>
+    <!-- Отображаем ноду, если checked -->
     <label class="label" v-if="node.selected">
     <span>{{ node.label }}</span>
     <button @click="deleteNode(node)">X</button>
     </label>
 
+    <!-- Рекурсивно передаем ноду, если имеет дочерние элементы -->
     <span v-if="node.children && node.children.length">
       <div v-for="child in node.children">
         <node v-if="child.selected" :node="child"></node>
@@ -26,6 +28,8 @@ export default {
     },
     methods: {
         deleteNode: function(node) {
+            // Рекурсивно производим unchecked всех элементов
+            // при unchecked родителя
             node.selected = false
 
             if (node.children && node.children.length) {
