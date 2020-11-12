@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         deleteNode: function(node) {
-            // Рекурсивно производим unchecked всех элементов
+            // Рекурсивно производим unchecked всех дочерних элементов
             // при unchecked родителя
             node.selected = false
 

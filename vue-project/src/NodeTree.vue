@@ -18,7 +18,7 @@ export default {
         node: Object
     },
     methods: {
-        // Рекурсивно производим unchecked всех элементов
+        // Рекурсивно производим unchecked всех дочерних элементов
         // при unchecked родителя
         uncheckChildren: function(node) {
             node.selected = false
